@@ -1,10 +1,17 @@
 <?php
+
 namespace Concrete\Core\Page\Theme\GridFramework\Type;
 
+use Concrete\Core\Block\Block;
 use Concrete\Core\Page\Theme\GridFramework\GridFramework;
+use Illuminate\Support\Str;
 
 class Bootstrap3 extends GridFramework
 {
+
+    const GRID_CONTAINER_FIXED = 1;
+    const GRID_CONTAINER_FLUID = 2;
+
     public function supportsNesting()
     {
         return true;
@@ -25,12 +32,47 @@ class Bootstrap3 extends GridFramework
         return '</div>';
     }
 
-    public function getPageThemeGridFrameworkContainerStartHTML()
+    public function getGridFrameworkContainerTypes(): array
     {
-        return '<div class="container">';
+        return [
+            self::GRID_CONTAINER_DISABLED => t('No grid container'),
+            self::GRID_CONTAINER_FIXED => t('Fixed width'),
+            self::GRID_CONTAINER_FLUID => t('Fluid width'),
+        ];
     }
 
-    public function getPageThemeGridFrameworkContainerEndHTML()
+    /**
+     * @param int $gridContainerOption
+     * @param \Concrete\Core\Block\Block|\Concrete\Core\Block\BlockType\BlockType $block
+     * @return string
+     */
+    public function getPageThemeGridFrameworkContainerStartHTML(int $gridContainerOption, $block)
+    {
+        if ($gridContainerOption == self::GRID_CONTAINER_FLUID) {
+            $container = 'container-fluid';
+        } elseif ($gridContainerOption == self::GRID_CONTAINER_FIXED) {
+            $container = 'container';
+        } else {
+            $container = '';
+        }
+
+        $blockType = 'ccm-block-type-' . Str::slug($block->getBlockTypeHandle());
+        if ($block instanceof Block && $block->getBlockFilename()) {
+            // Add template class if the block has a custom template.
+            $template = pathinfo($block->getBlockFilename(), PATHINFO_FILENAME);
+            $template = ' ccm-block-template-' . Str::slug($template);
+        } else {
+            $template = '';
+        }
+        return "<div class=\"{$container} {$blockType}{$template}\">";
+    }
+
+    /**
+     * @param int $gridContainerOption
+     * @param \Concrete\Core\Block\Block|\Concrete\Core\Block\BlockType\BlockType $block
+     * @return string
+     */
+    public function getPageThemeGridFrameworkContainerEndHTML(int $gridContainerOption, $block)
     {
         return '</div>';
     }

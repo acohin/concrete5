@@ -65,7 +65,7 @@ $gf = $pt->getThemeGridFrameworkObject();
     <script type="text/template" role="area-block-wrapper">
         <?php
         if ($pt->supportsGridFramework() && $a->isGridContainerEnabled()) {
-            echo $gf->getPageThemeGridFrameworkContainerStartHTML();
+            echo $gf->getPageThemeGridFrameworkContainerStartHTML(1, $bt);
             echo $gf->getPageThemeGridFrameworkRowStartHTML();
             printf(
                 '<div class="%s">',
@@ -76,7 +76,7 @@ $gf = $pt->getThemeGridFrameworkObject();
             </div>
             <?php
             echo $gf->getPageThemeGridFrameworkRowEndHTML();
-            echo $gf->getPageThemeGridFrameworkContainerEndHTML();
+            echo $gf->getPageThemeGridFrameworkContainerEndHTML(1, $bt);
         } else {
             ?>
             <div class='block'></div>

@@ -157,8 +157,12 @@ $(function() {
 		'supportsgrid': '<?=$enableThemeGrid?>',
 		<?php if ($enableThemeGrid) {
     ?>
+<?php
+/* Does this serve any purpose at the moment?
         'containerstart':  '<?=addslashes($themeGridFramework->getPageThemeGridFrameworkContainerStartHTML())?>',
         'containerend': '<?=addslashes($themeGridFramework->getPageThemeGridFrameworkContainerEndHTML())?>',
+  */
+?>
 		'rowstart':  '<?=addslashes($themeGridFramework->getPageThemeGridFrameworkRowStartHTML())?>',
 		'rowend': '<?=addslashes($themeGridFramework->getPageThemeGridFrameworkRowEndHTML())?>',
         'additionalGridColumnClasses': '<?=$themeGridFramework->getPageThemeGridFrameworkColumnAdditionalClasses()?>',

@@ -6,6 +6,9 @@ use Concrete\Core\Entity\StyleCustomizer\Inline\StyleSet;
 
 abstract class GridFramework
 {
+
+    const GRID_CONTAINER_DISABLED = 0;
+
     const DEVICE_CLASSES_HIDE_ON_EXTRA_SMALL = 10;
     const DEVICE_CLASSES_HIDE_ON_SMALL = 20;
     const DEVICE_CLASSES_HIDE_ON_MEDIUM = 30;
@@ -37,9 +40,25 @@ abstract class GridFramework
 
     abstract public function getPageThemeGridFrameworkRowEndHTML();
 
-    abstract public function getPageThemeGridFrameworkContainerStartHTML();
+     public function getGridFrameworkContainerTypes(): array {
+         return [
+             self::GRID_CONTAINER_DISABLED => t('No grid container'),
+         ];
+     }
 
-    abstract public function getPageThemeGridFrameworkContainerEndHTML();
+    /**
+     * @param int $gridContainerOption
+     * @param \Concrete\Core\Block\Block|\Concrete\Core\Block\BlockType\BlockType $block
+     * @return string
+     */
+    abstract public function getPageThemeGridFrameworkContainerStartHTML(int $gridContainerOption, $block);
+
+    /**
+     * @param int $gridContainerOption
+     * @param \Concrete\Core\Block\Block|\Concrete\Core\Block\BlockType\BlockType $block
+     * @return string
+     */
+    abstract public function getPageThemeGridFrameworkContainerEndHTML(int $gridContainerOption, $block);
 
     public function getPageThemeGridFrameworkNumColumns()
     {

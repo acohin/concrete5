@@ -53,7 +53,7 @@ if ($blockType->supportsInlineAdd()) {
         && !$blockType->ignorePageThemeGridFrameworkContainer()
     ) {
         $gf = $pt->getThemeGridFrameworkObject();
-        echo $gf->getPageThemeGridFrameworkContainerStartHTML();
+        echo $gf->getPageThemeGridFrameworkContainerStartHTML(1, $blockType);
         echo $gf->getPageThemeGridFrameworkRowStartHTML();
         printf('<div class="%s">', $gf->getPageThemeGridFrameworkColumnClassesForSpan(
                 $gf->getPageThemeGridFrameworkNumColumns()
@@ -131,6 +131,6 @@ if ($blockType->supportsInlineAdd()) {
         $gf = $pt->getThemeGridFrameworkObject();
         echo '</div>';
         echo $gf->getPageThemeGridFrameworkRowEndHTML();
-        echo $gf->getPageThemeGridFrameworkContainerEndHTML();
+        echo $gf->getPageThemeGridFrameworkContainerEndHTML(1, $blockType);
     }
 }

@@ -22,7 +22,7 @@ if (
     $gf = $pt->getThemeGridFrameworkObject();
     echo '</div>';
     echo $gf->getPageThemeGridFrameworkRowEndHTML();
-    echo $gf->getPageThemeGridFrameworkContainerEndHTML();
+    echo $gf->getPageThemeGridFrameworkContainerEndHTML(1, $b);
 }
 
 $p = new Permissions($b);

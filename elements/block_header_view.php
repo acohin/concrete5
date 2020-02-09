@@ -45,7 +45,7 @@ if (
     && !$b->ignorePageThemeGridFrameworkContainer()
 ) {
     $gf = $pt->getThemeGridFrameworkObject();
-    echo $gf->getPageThemeGridFrameworkContainerStartHTML();
+    echo $gf->getPageThemeGridFrameworkContainerStartHTML(1, $b);
     echo $gf->getPageThemeGridFrameworkRowStartHTML();
     printf('<div class="%s">', $gf->getPageThemeGridFrameworkColumnClassesForSpan(
         min($a->getAreaGridMaximumColumns(), $gf->getPageThemeGridFrameworkNumColumns())
